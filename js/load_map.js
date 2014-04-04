@@ -1,16 +1,25 @@
-function getFeatures() {
+function getFeatures(points) {
+	var arrayFeatures = new Array();
+	for (var i in points){
+	       var lonLat = new OpenLayers.LonLat(points[i].longitude,
+				    points[i].latitude)
+		      .transform(
+				  new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
+					      map.getProjectionObject() //to Spherical Mercator Projection
+					    );
+        	var template = { "type": "Feature", "geometry": {"type": "Point", "coordinates":
+[lonLat.lon,lonLat.lat]}};
+		arrayFeatures.push(template);
+	}
         var features = {
             "type": "FeatureCollection",
-            "features": [
-                { "type": "Feature", "geometry": {"type": "Point", "coordinates": [-0777700, 4956300]},
-                    "properties": {"Name": "Igor Tihonov", "Country":"Sweden", "City":"Gothenburg"}}
-            ]
+            "features": arrayFeatures
         };
         var reader = new OpenLayers.Format.GeoJSON();
         return reader.read(features);
 }
 
-function getAllSpots(){
+function getAllSpots(points){
     var audioSpotsLayer = new OpenLayers.Layer.Vector("audioSpots", {
         styleMap: new OpenLayers.StyleMap({
             externalGraphic: "img/checkpoint02.png",
@@ -20,8 +29,10 @@ function getAllSpots(){
             graphicYOffset: -26*/
         })
     });
-    var audioSpots = getFeatures();
+    var audioSpots = getFeatures(points);
+    console.log(audioSpots);
     audioSpotsLayer.addFeatures(audioSpots);
+    map.addLayer(audioSpotsLayer);
 }
 
 function locateMe(){

@@ -235,6 +235,7 @@
     <script src="js/load_map.js"></script>
     <script src="js/record_audio.js"></script>
     <script>
+	var audioSpots = "";
         Tako.onReady(function(){
             console.log("LOADED");
 		//Get photos
@@ -242,22 +243,24 @@
 		$.ajax({
   			type: 'GET',
   			url: fiblindGetAllAPI,
-  			data: {},
-  			dataType: 'json',
+  			dataType: 'text',
   			success: function(data){
- 				$.each( data.items, function( i, item ) {
-					console.log(item);
-				});
+				audioSpots = JSON.parse(data);
   			},
   			error: function(xhr, type){
 				console.log('Ajax error!');
-				console.log('XHR:'+xhr);
+				console.log('XHR:'+xhr.readyState);
+				console.log(xhr.responseText);
+				console.log(xhr.responseXML);
+				console.log(xhr.status);
+				console.log(xhr.statusText);
 				console.log('Type:'+type);
   			}
 		})
 	    });
 	    $("#soundsMap").on("load", function(){
 	        LoadMap("map",true);
+		getAllSpots(audioSpots);
 	    });
 	    $("#newSound").on("load", function(){
 	        LoadMap("smallMap",true);
@@ -287,18 +290,17 @@
 			console.log("Enviando datos al servidor:")
 			var fiblindAPI= "http://nosferatu.sytes.net:3000/audioSpot";
 			$.ajax({
-				type: 'POST',
 				url: fiblindAPI,
+				type: "POST",
 				data: {
                                        name:$('#name').val(),
 				       longitude:$('#globalLon').val(),
                                        latitude:$('#globalLat').val(),
                                        description:$('#description').val()
                                 },
-				dataType: 'json',
+				dataType: 'text',
 				success: function(data){
-					console.log("ÉXITO!");
-					console.log(data);
+					alert('Your sound has been loaded in the database');
 				},
 				error: function(xhr, type){
 					console.log('Ajax error!');
