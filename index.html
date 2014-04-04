@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Hack For Good</title>
+    <title>Fiblind</title>
     <meta name="description" content="Local">
     <meta name="author" content="www.namelivia.com">
     <meta name="format-detection" content="telephone=no">
@@ -21,7 +21,7 @@
     <aside class="full">
     <!-- <aside> -->
         <header>
-            <h1>Hack For Good</h1>
+            <h1>fiblind</h1>
         </header>
         <ul>
             <li class="icon user" data-section="profile">Mi profile</li>
@@ -39,7 +39,7 @@
             <nav class="right">
                 <button  class="button" data-action="aside" data-visible="colors"><img src="http://www.takojs.com/assets/img/tako-logo.png" alt=""><span>Aside</span></button>
             </nav>
-            <h1>Hack for Good Application</h1>
+            <h1>Fiblind</h1>
         </header>
         <nav>
             <button data-section="forms" class="icon check">Forms</button>
@@ -53,7 +53,7 @@
             </nav>
         </footer> -->
         <section id="main">
-		<h1>Welcome to the application we are making for Hack for Good</h1>
+		<h1>Welcome to Fiblind</h1>
         </section>
         <section id="buttons" class="indented">
             <p>
@@ -193,9 +193,19 @@
 	    <div id="images"></div>
         </section>
         <section id="newSound" class="indented">
+	    <p>Location</p>
             <div id="smallMap"></div>
+                <fieldset>
+                    <label for="input">Name</label>
+                    <input type="text" id="name">
+                    <label for="border">Description</label>
+                    <textarea id="description" placeholder="Audio description (optional)"></textarea>
+		    <input type="hidden" id="globalLon"></input>
+		    <input type="hidden" id="globalLat"></input>
+                </fieldset>
+ 	    <audio id="player" style="margin-top:15px;" controls autoplay></audio>
 	    <button id="record" class="wide">Record</button>
-	    <button id="upload" disabled class="wide">Upload</button>
+	    <button id="upload" class="wide accept">Upload</button>
         </section>
         <section id="notifications" class="indented">
             <button class="wide accept" id="show_success">Success</button>
@@ -223,28 +233,26 @@
     <script src="js/tako.components.js"></script>
     <script src="js/tako.debug.js"></script>
     <script src="js/load_map.js"></script>
+    <script src="js/record_audio.js"></script>
     <script>
         Tako.onReady(function(){
             console.log("LOADED");
 		//Get photos
- 		var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+		var fiblindGetAllAPI = "http://nosferatu.sytes.net:3000/audioSpots";
 		$.ajax({
   			type: 'GET',
-  			url: flickerAPI,
-  			data: {tags:'blind',tagmode:'any',format:'json'},
+  			url: fiblindGetAllAPI,
+  			data: {},
   			dataType: 'json',
   			success: function(data){
  				$.each( data.items, function( i, item ) {
-				$("<img>").attr("src",item.media.m ).appendTo($('#images'));
-				if (i == 3) {
-					return false;
-				}
+					console.log(item);
 				});
   			},
   			error: function(xhr, type){
-    				alert('Ajax error!');
-    				alert(xhr);
-    				alert(type);
+				console.log('Ajax error!');
+				console.log('XHR:'+xhr);
+				console.log('Type:'+type);
   			}
 		})
 	    });
@@ -253,8 +261,51 @@
 	    });
 	    $("#newSound").on("load", function(){
 	        LoadMap("smallMap",true);
+		var audioElement = document.getElementById('player');
+		var recording = false;
+		$('#upload').hide();
+		$('#record').on('click',function(){
+			if (!recording){
+				recording = true;
+				$(this).html('Stop');
+				navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+				var constraints = {audio: true};
+				navigator.getUserMedia(constraints, startRecording, errorCallback);
+			} else {
+			    mediaRecorder.stop();
+			    mediaRecorder.ondataavailable = function(e) {
+				console.log('Data available...');
+				console.log(e);
+				audioElement.src = window.URL.createObjectURL(e.data);
+				$('#upload').show();
+			    };
+			    recording = false;
+			    $(this).html('Record');
+			}
+		});
 		$('#upload').on('click',function(){
-			alert('ok, habilitado');
+			console.log("Enviando datos al servidor:")
+			var fiblindAPI= "http://nosferatu.sytes.net:3000/audioSpot";
+			$.ajax({
+				type: 'POST',
+				url: fiblindAPI,
+				data: {
+                                       name:$('#name').val(),
+				       longitude:$('#globalLon').val(),
+                                       latitude:$('#globalLat').val(),
+                                       description:$('#description').val()
+                                },
+				dataType: 'json',
+				success: function(data){
+					console.log("ÉXITO!");
+					console.log(data);
+				},
+				error: function(xhr, type){
+					console.log('Ajax error!');
+					console.log('XHR:'+xhr);
+					console.log('Type:'+type);
+				}
+			})
 	        });
 	    });
 	    $("#database").on("load", function(){

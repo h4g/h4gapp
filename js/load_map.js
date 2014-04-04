@@ -10,9 +10,25 @@ function getFeatures() {
         return reader.read(features);
 }
 
+function getAllSpots(){
+    var audioSpotsLayer = new OpenLayers.Layer.Vector("audioSpots", {
+        styleMap: new OpenLayers.StyleMap({
+            externalGraphic: "img/checkpoint02.png",
+            graphicOpacity: 1.0,
+            graphicWidth: 25,
+            graphicHeight: 64/*,
+            graphicYOffset: -26*/
+        })
+    });
+    var audioSpots = getFeatures();
+    audioSpotsLayer.addFeatures(audioSpots);
+}
+
 function locateMe(){
     console.log("Localizando....");
     navigator.geolocation.getCurrentPosition(function(position) {       
+	    $('#globalLon').val(position.coords.longitude);
+	    $('#globalLat').val(position.coords.latitude);
 	    var lonLat = new OpenLayers.LonLat(position.coords.longitude,
 				    position.coords.latitude)
 		      .transform(
@@ -22,10 +38,10 @@ function locateMe(){
 	    var point = new OpenLayers.Geometry.Point(lonLat.lon, lonLat.lat);
 	    var userLayer = new OpenLayers.Layer.Vector("User", {
 		styleMap: new OpenLayers.StyleMap({
-		    externalGraphic: "img/skater-green.png",
+		    externalGraphic: "img/checkpoint02.png",
 		    graphicOpacity: 1.0,
-		    graphicWidth: 50,
-		    graphicHeight: 50/*,
+		    graphicWidth: 25,
+		    graphicHeight: 64/*,
 		    graphicYOffset: -26*/
 		})
 	    });
@@ -38,17 +54,6 @@ function locateMe(){
 
 //Loads the map
 function LoadMap(whatDiv,locate){
-    var skatersLayer = new OpenLayers.Layer.Vector("Skaters", {
-        styleMap: new OpenLayers.StyleMap({
-            externalGraphic: "img/skater-red.png",
-            graphicOpacity: 1.0,
-            graphicWidth: 50,
-            graphicHeight: 50/*,
-            graphicYOffset: -26*/
-        })
-    });
-        var skaters = getFeatures();
-        skatersLayer.addFeatures(skaters);
 	map = new OpenLayers.Map({
 	div: whatDiv,
         theme: null,
@@ -62,10 +67,9 @@ function LoadMap(whatDiv,locate){
             new OpenLayers.Control.Zoom()
         ],
         layers: [
-            new OpenLayers.Layer.OSM(null, null, {
+            new OpenLayers.Layer.Stamen("toner", null, {
                 transitionEffect: 'resize'
-            }),
-	    skatersLayer
+            })
         ],
         center: new OpenLayers.LonLat(742000, 5861000),
         zoom: 3
