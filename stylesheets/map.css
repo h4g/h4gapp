@@ -80,9 +80,14 @@ html, body {
                 }
             }
             #map {
-                width    : 900px;
+                width    : 100%;
                 position : relative;
                 height   : 800px;
+            }
+            #smallMap {
+                width    : 100%;
+                position : relative;
+                height   : 200px;
             }
             .olControlAttribution {
                 position      : absolute;

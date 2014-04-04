@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Local</title>
+    <title>Hack For Good</title>
     <meta name="description" content="Local">
     <meta name="author" content="www.namelivia.com">
     <meta name="format-detection" content="telephone=no">
@@ -21,13 +21,13 @@
     <aside class="full">
     <!-- <aside> -->
         <header>
-            <h1>Local</h1>
+            <h1>Hack For Good</h1>
         </header>
         <ul>
             <li class="icon user" data-section="profile">Mi profile</li>
-            <li class="icon pin" data-section="theMap">Find Friends</li>
-            <li class="icon rocket" data-section="database">Find Spots</li>
-            <li class="icon user" data-section="newSpot">New spot</li>
+            <li class="icon pin" data-section="soundsMap">Sounds map</li>
+            <li class="icon rocket" data-section="nearSounds">Near sounds</li>
+            <li class="icon user" data-section="newSound">Create sound</li>
         </ul>
     </aside>
 
@@ -39,7 +39,7 @@
             <nav class="right">
                 <button  class="button" data-action="aside" data-visible="colors"><img src="http://www.takojs.com/assets/img/tako-logo.png" alt=""><span>Aside</span></button>
             </nav>
-            <h1>Welcome to Local</h1>
+            <h1>Hack for Good Application</h1>
         </header>
         <nav>
             <button data-section="forms" class="icon check">Forms</button>
@@ -53,9 +53,7 @@
             </nav>
         </footer> -->
         <section id="main">
-            <p>This is an example of pull and refresh</p>
-            <p data-device="phone">This is only seen in phone mode</p>
-            <p data-device="tablet">This is only seen in tablet mode</p>
+		<h1>Welcome to the application we are making for Hack for Good</h1>
         </section>
         <section id="buttons" class="indented">
             <p>
@@ -187,37 +185,17 @@
                 </fieldset>
             </form>
         </section>
-        <section id="theMap" class="indented">
+        <section id="soundsMap" class="indented">
             <div id="map"></div>
         </section>
-        <section id="database" class="big indented">
+        <section id="nearSounds" class="big indented">
 	    <h1>Spots:</h1>
 	    <div id="images"></div>
         </section>
-        <section id="newSpot" class="indented">
-            <form>
-                <fieldset>
-                    <legend>Insert a new spot</legend>
-                    <label for="input">Name</label>
-                    <input type="text" id="input">
-                    <label for="border">Description</label>
-                    <textarea placeholder="Enter a short description of the spot"></textarea>
-                    <label for="category">Category</label>
-                        <select name="" id="select_box">
-                            <option value="handrail">Handrail</option>
-                            <option value="stairset">Stairset</option>
-                            <option value="ledge">Ledge</option>
-                            <option value="skatepark">Skatepark</option>
-                        </select>
-                    <label for="location">Location</label>
-		    <button class="wide">Select</button>
-                    <label for="picture">Picture</label>
-		    <button class="wide">Select</button>
-                </fieldset>
-		<div style="float:right;">
-		    <button class="icon ok accept">Insert new spot</button>
-		</div>
-            </form>
+        <section id="newSound" class="indented">
+            <div id="smallMap"></div>
+	    <button id="record" class="wide">Record</button>
+	    <button id="upload" disabled class="wide">Upload</button>
         </section>
         <section id="notifications" class="indented">
             <button class="wide accept" id="show_success">Success</button>
@@ -253,7 +231,7 @@
 		$.ajax({
   			type: 'GET',
   			url: flickerAPI,
-  			data: {tags:'skateboarding',tagmode:'any',format:'json'},
+  			data: {tags:'blind',tagmode:'any',format:'json'},
   			dataType: 'json',
   			success: function(data){
  				$.each( data.items, function( i, item ) {
@@ -270,8 +248,14 @@
   			}
 		})
 	    });
-	    $("#theMap").on("load", function(){
-	        LoadMap();
+	    $("#soundsMap").on("load", function(){
+	        LoadMap("map",true);
+	    });
+	    $("#newSound").on("load", function(){
+	        LoadMap("smallMap",true);
+		$('#upload').on('click',function(){
+			alert('ok, habilitado');
+	        });
 	    });
 	    $("#database").on("load", function(){
             window.puller = Tako.Pull_Refresh("main", {onRefresh:function(){
