@@ -15,37 +15,36 @@
     <link rel="stylesheet" href="stylesheets/tako.css">
     <link rel="stylesheet" href="stylesheets/tako.theme.css">
     <link rel="stylesheet" href="stylesheets/map.css">
+    <link rel="stylesheet" href="stylesheets/popup.css">
 </head>
 
 <body>
     <aside class="full">
     <!-- <aside> -->
         <header>
-            <h1>fiblind</h1>
+            <img src="img/logomenu.png" alt="Fiblind" style="margin-top:23px;"></img>
         </header>
         <ul>
-            <li class="icon user" data-section="profile">Mi profile</li>
-            <li class="icon pin" data-section="soundsMap">Sounds map</li>
-            <li class="icon rocket" data-section="nearSounds">Near sounds</li>
-            <li class="icon user" data-section="newSound">Create sound</li>
+            <li  data-section="profile"><img src="img/perfil.png" style="width:30px;height:auto;">My profile</li>
+            <li  data-section="soundsMap"><img src="img/sound_map.png" style="width:30px;height:auto;">Sounds map</li>
+            <li  data-section="nearSounds"><img src="img/near_sound.png" style="width:30px;height:auto;">Near sounds</li>
+            <li  data-section="newSound"><img src="img/create_sound.png" style="width:30px;height:auto;">Create sound</li>
         </ul>
     </aside>
 
     <article id="article_1">
         <header>
             <nav class="left">
-                <button class="icon ellipsis-vert" data-action="aside">Aside<span class="counter">5</span></button>
+                <button class="icon ellipsis-vert" data-action="aside"
+style="background-color:#33CCCC;"></button>
             </nav>
             <nav class="right">
-                <button  class="button" data-action="aside" data-visible="colors"><img src="http://www.takojs.com/assets/img/tako-logo.png" alt=""><span>Aside</span></button>
+                <button  class="button" data-action="aside" data-visible="colors"><img src="img/Eventos.png" alt=""><span>Aside</span></button>
             </nav>
-            <h1>Fiblind</h1>
+	    <div align="center">
+                <img src="img/logoCabecera.png" style="margin-top:9px;" alt="Fiblind"/>
+	    </div>
         </header>
-        <nav>
-            <button data-section="forms" class="icon check">Forms</button>
-            <button data-section="buttons" class="icon tasks">Buttons</button>
-            <button data-section="lists" class="icon list">Lists</button>
-        </nav>
         <!-- <footer>
             <nav>
                 <button class="icon ok" id="show_success2">Success<span class="counter">5</span></button>
@@ -53,7 +52,10 @@
             </nav>
         </footer> -->
         <section id="main">
-		<h1>Welcome to Fiblind</h1>
+		<div align="center">
+		<h1 style="font-size:40px;margin-top:150px;">Welcome to fiblind</h1>
+		<h1>Building the future Internet for blind people</h1>
+		</div>
         </section>
         <section id="buttons" class="indented">
             <p>
@@ -107,105 +109,104 @@
             </p>
 
             <p>
-                <button class="button smallest"><img src="http://www.takojs.com/assets/img/tako-logo.png" alt=""><span>Aside</span></button>
+                <button class="button smallest"><img src="img/Eventos.png" alt=""><span>Aside</span></button>
 
-                <button class="button small"><img src="http://www.takojs.com/assets/img/tako-logo.png" alt=""><span>Aside</span></button>
+                <button class="button small"><img src="img/Eventos.png" alt=""><span>Aside</span></button>
 
-                <button class="button"><img src="http://www.takojs.com/assets/img/tako-logo.png" alt=""><span>Aside</span></button>
+                <button class="button"><img src="img/Eventos.png" alt=""><span>Aside</span></button>
 
-                <button class="button big"><img src="http://www.takojs.com/assets/img/tako-logo.png" alt=""><span>Aside</span></button>
+                <button class="button big"><img src="img/Eventos.png" alt=""><span>Aside</span></button>
 
-                <button class="button biggest"><img src="http://www.takojs.com/assets/img/tako-logo.png" alt=""><span>Aside</span></button>
+                <button class="button biggest"><img src="img/Eventos.png" alt=""><span>Aside</span></button>
             </p>
 
             <p>
-                <button class="button smallest"><img src="http://www.takojs.com/assets/img/tako-logo.png" alt=""></button>
+                <button class="button smallest"><img src="img/Eventos.png" alt=""></button>
 
-                <button class="button small"><img src="http://www.takojs.com/assets/img/tako-logo.png" alt=""></button>
+                <button class="button small"><img src="img/Eventos.png" alt=""></button>
 
-                <button class="button"><img src="http://www.takojs.com/assets/img/tako-logo.png" alt=""></button>
+                <button class="button"><img src="img/Eventos.png" alt=""></button>
 
-                <button class="button big"><img src="http://www.takojs.com/assets/img/tako-logo.png" alt=""></button>
+                <button class="button big"><img src="img/Eventos.png" alt=""></button>
 
-                <button class="button biggest"><img src="http://www.takojs.com/assets/img/tako-logo.png" alt=""></button>
+                <button class="button biggest"><img src="img/Eventos.png" alt=""></button>
             </p>
         </section>
         <section id="profile" class="indented">
-            <form>
+            <div class="miForm">
                 <fieldset>
-                    <legend>Text</legend>
-                    <label for="input">Default</label>
-                    <input type="text" id="input">
-                    <label for="line">Line</label>
-                    <input type="text" id="line" class="line">
-                    <label for="background">No back</label>
-                    <input type="text" id="background" class="no_background">
-                    <label for="border">No border</label>
-                    <input type="text" id="border" class="no_border">
-                    <label for="border">Textarea</label>
-                    <textarea placeholder="The textarea can have the input texts' styles"></textarea>
-                    <label for="input">Default</label>
-                    <input type="text" id="input">
+                    <label for="input">First Name</label>
+                    <input type="text" id="input1" value="Antonio">
+                    <label for="input">Last Name</label>
+                    <input type="text" id="input2" value="Pérez González">
+                    <label for="input">Email</label>
+                    <input type="text" id="input3" value="antonio.perez@gmail.com">
+                    <label for="input">Password</label>
+                    <input type="password" id="input3" value="password123123123">
+                    <label for="border">Bio</label>
+                    <textarea style="resize:none;">I like future Internet for blind people.</textarea>
+		    <div style="float:right;">
+		    <button id="record" class="icon edit" style="margin-top:15px;">Edit</button>
                 </fieldset>
-                <br>
-                <fieldset>
-                    <legend>Checkboxes & Radiobuttons</legend>
-                    <label for="square">Square</label>
-                    <input type="checkbox" id="square" class="square">
-                    <input type="radio" id="square_r" name="radio" class="square">
-                    <div class="clear"></div>
-                    <label for="circle">Circle</label>
-                    <input type="checkbox" id="circle" class="circle">
-                    <input type="radio" id="circle_r" name="radio" class="circle">
-                    <div class="clear"></div>
-                    <label for="switch">Switch</label>
-                    <input type="checkbox" id="switch" class="switch">
-                    <input type="radio" id="switch_r" name="radio" class="switch">
-                    <div class="clear"></div>
-                    <label for="switch_c">Circle Switch</label>
-                    <input type="checkbox" id="switch_c" class="switch circle">
-                    <input type="radio" id="switch_c_r" name="radio" class="switch circle">
-                </fieldset>
-                <br>
-                <fieldset>
-                    <legend>Others</legend>
-                    <label for="select_box">Select</label>
-                    <!-- <label class="select"> -->
-                        <select name="" id="select_box">
-                            <option value="elem1">Elem1</option>
-                            <option value="elem2">Elem2</option>
-                            <option value="elem3">Elem3</option>
-                            <option value="elem4">Elem4</option>
-                            <option value="elem5">Elem5</option>
-                        </select>
-                    <!-- </label> -->
-                    <br>
-                    <label for="range">Range</label>
-                    <input type="range" id="range">
-                </fieldset>
-            </form>
+            </div>
+	    </div>
         </section>
         <section id="soundsMap" class="indented">
             <div id="map"></div>
+	    <div id="popupBasic">
+	    <table>
+		    <tr>
+			    <td>
+			    <p><b>Name:</b></p>
+			    </td>
+			    <td>
+			    <p id="whatName">Nombre de prueba</p>
+			    </td>
+		    </tr>
+		    <tr>
+			    <td>
+			    <p><b>Description:</b></p>
+			    </td>
+			    <td>
+			    <p id="whatDescription">Descripción de prueba</p>
+			    </td>
+		    </tr>
+	    </table>
+ 	    	<audio id="mapPlayer" style="margin-top:15px;" controls autoplay></audio>
+	    </div>
         </section>
         <section id="nearSounds" class="big indented">
-	    <h1>Spots:</h1>
-	    <div id="images"></div>
+	<div class="miForm">
+	   <div style="padding:25px 50px 25px 50px;">
+		<ul>
+		<li style="background-color:#33CCCC;"><img src="img/Eventos.png" alt=""><strong>Catedral de la
+	Almudena</strong><small>200 m.</small></li>
+		<li><img src="img/Eventos.png" alt=""><strong>Medialab</strong><small>300 m.</small></li>
+		<li style="background-color:#33CCCC;"><img src="img/Eventos.png" alt=""><strong>Museo del prado</strong><small>600 m.</small></li>
+		<li><img src="img/Eventos.png" alt=""><strong>Plaza mayor</strong><small>650 m.</small></li>
+		<li style="background-color:#33CCCC;"><img src="img/Eventos.png" alt=""><strong>Caixaforum</strong><small>700 m.</small></li>
+		<li><img src="img/Eventos.png" alt=""><strong>Feria medieval de
+	Madrid</strong><small>2300 m.</small></li>
+		</ul>
+	   </div>
+	</div>
         </section>
         <section id="newSound" class="indented">
-	    <p>Location</p>
             <div id="smallMap"></div>
+	    <div class="miForm" style="margin-top:15px;">
                 <fieldset>
                     <label for="input">Name</label>
                     <input type="text" id="name">
                     <label for="border">Description</label>
-                    <textarea id="description" placeholder="Audio description (optional)"></textarea>
+                    <textarea style="resize:none;" id="description" placeholder="Audio description (optional)"></textarea>
 		    <input type="hidden" id="globalLon"></input>
 		    <input type="hidden" id="globalLat"></input>
-                </fieldset>
  	    <audio id="player" style="margin-top:15px;" controls autoplay></audio>
+ 	    <input type="hidden" id="audioData"></input>
 	    <button id="record" class="wide">Record</button>
 	    <button id="upload" class="wide accept">Upload</button>
+            </fieldset>
+	    </form>
         </section>
         <section id="notifications" class="indented">
             <button class="wide accept" id="show_success">Success</button>
@@ -270,6 +271,7 @@
 		$('#record').on('click',function(){
 			if (!recording){
 				recording = true;
+				var recordingStarted = new Date();
 				$(this).html('Stop');
 				navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 				var constraints = {audio: true};
@@ -278,8 +280,8 @@
 			    mediaRecorder.stop();
 			    mediaRecorder.ondataavailable = function(e) {
 				console.log('Data available...');
-				console.log(e);
 				audioElement.src = window.URL.createObjectURL(e.data);
+				$('#audioData').val(e.data);
 				$('#upload').show();
 			    };
 			    recording = false;
@@ -296,7 +298,8 @@
                                        name:$('#name').val(),
 				       longitude:$('#globalLon').val(),
                                        latitude:$('#globalLat').val(),
-                                       description:$('#description').val()
+                                       description:$('#description').val(),
+                                       audiodata:$('#audioData').val()
                                 },
 				dataType: 'text',
 				success: function(data){
