@@ -1,7 +1,7 @@
 /* TaKo v1.1 - 20/03/2014
    http://takojs.com
    Copyright (c) 2014 Iñigo Gonzalez Vazquez <ingonza85@gmail.com> (@haas85) - Under MIT License */
-.miForm{background-color:#000000;}aside li{font-family:"fira-medium";}aside ul li:hover{color:#ffffff !important;}body{font:14px "fira";background-color:#e7e7e7;}body
+fieldset label{color:#ffffff !important;}.miForm{background-color:#000000;}aside li{font-family:"fira-medium";}aside ul li:hover{color:#ffffff !important;}body{font:14px "fira";background-color:#e7e7e7;}body
 *{font-family:"fira"}article{background-color:#ffffff}.theme{background-color:#ff7d26
 !important;-webkit-background-image:-webkit-linear-gradient(#ff9c59,#f60)
 !important;-moz-background-image:-webkit-linear-gradient(#ff9c59,#f60)
