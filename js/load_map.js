@@ -36,8 +36,7 @@ function getAllSpots(points){
 		    $('#whatName').html(feature.attributes.name);
 		    $('#whatDescription').html(feature.attributes.description);
 		    var audioElement = document.getElementById('mapPlayer');
-		    var blob = new Blob(feature.attributes.audiodata, { type: "audio/ogg" });
-		    //audioElement.src = window.URL.createObjectURL(blob);
+		    audioElement.src = feature.attributes.audiodata;
 	    	    map.setCenter(centerPoint, 18);
                 },
                 'featureunselected':function(evt){

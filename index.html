@@ -171,8 +171,12 @@ style="background-color:#33CCCC;"></button>
 			    <p id="whatDescription">Descripción de prueba</p>
 			    </td>
 		    </tr>
+			<tr>
+				<td>
+ 	    			<audio id="mapPlayer" style="margin-top:15px;" controls autoplay></audio>
+				</td>
+			</tr>
 	    </table>
- 	    	<audio id="mapPlayer" style="margin-top:15px;" controls autoplay></audio>
 	    </div>
         </section>
         <section id="nearSounds" class="big indented">
@@ -237,8 +241,9 @@ style="background-color:#33CCCC;"></button>
 	var audioSpots = "";
         Tako.onReady(function(){
             console.log("LOADED");
-		//Get photos
-		var fiblindGetAllAPI = "http://nosferatu.sytes.net:3000/audioSpots";
+		//Get all the sounds
+		//var fiblindGetAllAPI = "http://nosferatu.sytes.net:3000/audioSpots";
+		var fiblindGetAllAPI = "http://192.168.1.128:3000/audioSpots";
 		$.ajax({
   			type: 'GET',
   			url: fiblindGetAllAPI,
@@ -247,13 +252,7 @@ style="background-color:#33CCCC;"></button>
 				audioSpots = JSON.parse(data);
   			},
   			error: function(xhr, type){
-				console.log('Ajax error!');
-				console.log('XHR:'+xhr.readyState);
-				console.log(xhr.responseText);
-				console.log(xhr.responseXML);
-				console.log(xhr.status);
-				console.log(xhr.statusText);
-				console.log('Type:'+type);
+				//Error
   			}
 		})
 	    });
@@ -277,9 +276,8 @@ style="background-color:#33CCCC;"></button>
 			} else {
 			    mediaRecorder.stop();
 			    mediaRecorder.ondataavailable = function(e) {
-				console.log('Data available...');
 				audioElement.src = window.URL.createObjectURL(e.data);
-				$('#audioData').val(e.data);
+				encodeAudio(e.data);
 				$('#upload').show();
 			    };
 			    recording = false;
@@ -287,8 +285,8 @@ style="background-color:#33CCCC;"></button>
 			}
 		});
 		$('#upload').on('click',function(){
-			console.log("Enviando datos al servidor:")
 			var fiblindAPI= "http://nosferatu.sytes.net:3000/audioSpot";
+			var fiblindAPI= "http://192.168.1.128:3000/audioSpot";
 			$.ajax({
 				url: fiblindAPI,
 				type: "POST",
@@ -364,5 +362,6 @@ style="background-color:#33CCCC;"></button>
     <!--<script src="http://192.168.2.100:8080/target/target-script-min.js"></script> -->
     <script src="js/openlayers/OpenLayers.mobile.js"></script>
     <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+    <script src="js/fiblind.js"></script>
 </body>
 </html>
