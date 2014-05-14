@@ -144,7 +144,7 @@ style="background-color:#33CCCC;"></button>
                     <label for="input">Password</label>
                     <input type="password" id="input3" value="password123123123">
                     <label for="border">Bio</label>
-                    <textarea style="resize:none;">I like future Internet for blind people.</textarea>
+                    <textarea style="resize:none;">I like skateboarding.</textarea>
 		    <div style="float:right;">
 		    <button id="edit" class="icon edit" style="margin-top:15px;">Edit</button>
                 </fieldset>
@@ -195,7 +195,7 @@ style="background-color:#33CCCC;"></button>
             <div id="smallMap"></div>
 	    <div class="miForm" style="margin-top:15px;">
                     <label for="input">Name</label>
-                    <input type="text" id="name">
+                    <input type="text" id="name" placeholder="Audio name">
                     <label for="border">Description</label>
                     <textarea style="resize:none;" id="description" placeholder="Audio description (optional)"></textarea>
 		    <input type="hidden" id="globalLon"></input>
@@ -259,7 +259,7 @@ style="background-color:#33CCCC;"></button>
 	    });
 	    $("#soundsMap").on("load", function(){
 	        LoadMap("map",true);
-		getAllSpots(audioSpots);
+		    getAllSpots(audioSpots);
 	    });
 	    $("#newSound").on("load", function(){
 	        LoadMap("smallMap",true);
@@ -293,17 +293,25 @@ style="background-color:#33CCCC;"></button>
 				url: fiblindAPI,
 				type: "POST",
 				data: {
-                                       name:$('#name').val(),
-				       longitude:$('#globalLon').val(),
-                                       latitude:$('#globalLat').val(),
-                                       description:$('#description').val(),
-                                       audiodata:$('#audioData').val()
+					name:$('#name').val(),
+					longitude:$('#globalLon').val(),
+					latitude:$('#globalLat').val(),
+					description:$('#description').val(),
+					audiodata:$('#audioData').val()
                                 },
 				dataType: 'text',
 				success: function(data){
-					alert('Your sound has been loaded in the database');
+					Tako.Notification.success("ok","Sound note created","Your sound has been loaded to the database", null,
+						function(){
+							$('#name').val('');
+							$('#globalLon').val('');
+							$('#globalLat').val('');
+							$('#description').val('');
+							$('#audiodata').val('');
+						});
 				},
 				error: function(xhr, type){
+					Tako.Notification.error(null,"Error","Something went wrong, check your connection", 3, function(){console.log("ERROR CB");});
 					console.log('Ajax error!');
 					console.log('XHR:'+xhr);
 					console.log('Type:'+type);
