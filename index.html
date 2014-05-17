@@ -2,9 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Fiblind</title>
-    <meta name="description" content="Local">
-    <meta name="author" content="www.namelivia.com">
+    <title>Filbind</title>
+    <meta name="description" content="Fiblind">
+    <meta name="author" content="">
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="cleartype" content="on">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -15,353 +15,48 @@
     <link rel="stylesheet" href="stylesheets/tako.css">
     <link rel="stylesheet" href="stylesheets/tako.theme.css">
     <link rel="stylesheet" href="stylesheets/map.css">
-    <link rel="stylesheet" href="stylesheets/popup.css">
 </head>
 
 <body>
-    <aside class="full">
-    <!-- <aside> -->
-        <header>
-            <img src="img/logomenu.png" alt="Fiblind" style="margin-top:23px;"></img>
-        </header>
-        <ul>
-            <li  data-section="profile"><img src="img/perfil.png" style="width:30px;height:auto;">My profile</li>
-            <li  data-section="soundsMap"><img src="img/sound_map.png" style="width:30px;height:auto;">Sounds map</li>
-            <li  data-section="nearSounds"><img src="img/near_sound.png" style="width:30px;height:auto;">Near sounds</li>
-            <li  data-section="newSound"><img src="img/create_sound.png" style="width:30px;height:auto;">Create sound</li>
-        </ul>
-    </aside>
-
+	<div id="fb-root"></div>
+    <script src="js/fiblindFacebook.js"></script>
     <article id="article_1">
         <header>
-            <nav class="left">
-                <button class="icon ellipsis-vert" data-action="aside"
-style="background-color:#33CCCC;"></button>
-            </nav>
-            <nav class="right">
-                <button  class="button" data-action="aside" data-visible="colors"><img src="img/Eventos.png" alt=""><span>Aside</span></button>
-            </nav>
-	    <div align="center">
-                <img src="img/logoCabecera.png" style="margin-top:9px;" alt="Fiblind"/>
-	    </div>
+            <h1>Welcome to Fiblind</h1>
         </header>
-        <!-- <footer>
+        <footer>
             <nav>
-                <button class="icon ok" id="show_success2">Success<span class="counter">5</span></button>
-                <button id="show_progress2">Progress<span class="counter">84</span></button>
+				<p>Aquí va la información del footer</p>
             </nav>
-        </footer> -->
-        <section id="main">
-		<div align="center">
-		<h1 style="font-size:40px;margin-top:150px;">Welcome to fiblind</h1>
-		<h1>Building the future Internet for blind people</h1>
-		</div>
-        </section>
-        <section id="buttons" class="indented">
-            <p>
-                <button class="wide">Wide</button>
-                <button class="wide accept">Accept</button>
-                <button class="wide cancel">Cancel</button>
-            </p>
-
-            <p>
-                <button class="smallest">Smallest</button>
-                <button class="small">Small</button>
-                <button >Normal</button>
-                <button class="big">Big</button>
-                <button class="biggest">Biggest</button>
-            </p>
-
-            <p>
-                <button class="smallest"><span class="icon spin1 animated"></span><span>Hola</span></button>
-
-                <button class="small"><span class="icon spin2 animated"></span><span>Hola</span></button>
-
-                <button class=""><span class="icon spin3 animated"></span><span>Hola</span></button>
-
-                <button class="big"><span class="icon spin4 animated"></span><span>Hola</span></button>
-
-                <button class="biggest"><span class="icon spin5 animated"></span><span>Hola</span></button>
-            </p>
-
-            <p>
-                <button class="smallest icon ok">Hola</button>
-
-                <button class="small icon ok">Hola</button>
-
-                <button class="icon ok">Hola</button>
-
-                <button class="big icon ok">Hola</button>
-
-                <button class="biggest icon ok">Hola</button>
-            </p>
-
-            <p>
-                <button class="smallest icon ok"></button>
-
-                <button class="small icon ok"></button>
-
-                <button class="icon ok"></button>
-
-                <button class="big icon ok"></button>
-
-                <button class="biggest icon ok"></button>
-            </p>
-
-            <p>
-                <button class="button smallest"><img src="img/Eventos.png" alt=""><span>Aside</span></button>
-
-                <button class="button small"><img src="img/Eventos.png" alt=""><span>Aside</span></button>
-
-                <button class="button"><img src="img/Eventos.png" alt=""><span>Aside</span></button>
-
-                <button class="button big"><img src="img/Eventos.png" alt=""><span>Aside</span></button>
-
-                <button class="button biggest"><img src="img/Eventos.png" alt=""><span>Aside</span></button>
-            </p>
-
-            <p>
-                <button class="button smallest"><img src="img/Eventos.png" alt=""></button>
-
-                <button class="button small"><img src="img/Eventos.png" alt=""></button>
-
-                <button class="button"><img src="img/Eventos.png" alt=""></button>
-
-                <button class="button big"><img src="img/Eventos.png" alt=""></button>
-
-                <button class="button biggest"><img src="img/Eventos.png" alt=""></button>
-            </p>
-        </section>
-        <section id="profile" class="indented">
+        </footer>
+        <section id="login">
+			<!-- TODO: Cambiar estos inlines -->
+			<div style="text-align:center; margin-top:15px;"><img src="img/logoCabecera.png"></img></div>
+			<!-- TODO: Nuestro propio login
             <div class="miForm">
                 <fieldset>
-                    <label for="input">First Name</label>
-                    <input type="text" id="input1" value="Antonio">
-                    <label for="input">Last Name</label>
-                    <input type="text" id="input2" value="Pérez González">
-                    <label for="input">Email</label>
-                    <input type="text" id="input3" value="antonio.perez@gmail.com">
+                    <label for="input">Username</label>
+                    <input type="text" id="username" name="username">
                     <label for="input">Password</label>
-                    <input type="password" id="input3" value="password123123123">
-                    <label for="border">Bio</label>
-                    <textarea style="resize:none;">I like skateboarding.</textarea>
-		    <div style="float:right;">
-		    <button id="edit" class="icon edit" style="margin-top:15px;">Edit</button>
-                </fieldset>
-            </div>
-	    </div>
-        </section>
-        <section id="soundsMap" class="indented">
-            <div id="map"></div>
-	    <div id="popupBasic">
-	    <table>
-		    <tr>
-			    <td>
-			    <p><b>Name:</b></p>
-			    </td>
-			    <td>
-			    <p id="whatName">Nombre de prueba</p>
-			    </td>
-		    </tr>
-		    <tr>
-			    <td>
-			    <p><b>Description:</b></p>
-			    </td>
-			    <td>
-			    <p id="whatDescription">Descripción de prueba</p>
-			    </td>
-		    </tr>
-			<tr>
-				<td>
- 	    			<audio id="mapPlayer" style="margin-top:15px;" controls autoplay></audio>
-				</td>
-			</tr>
-	    </table>
-	    </div>
-        </section>
-        <section id="nearSounds" class="big indented">
-	<div class="miForm">
-	   <div style="padding:25px 50px 25px 50px;">
-		<ul>
-		<li style="background-color:#33CCCC;"><img src="img/Eventos.png" alt=""><strong>Catedral de la
-	Almudena</strong><small>200 m.</small></li>
-		<li><img src="img/Eventos.png" alt=""><strong>Medialab</strong><small>300 m.</small></li>
-		<li style="background-color:#33CCCC;"><img src="img/Eventos.png" alt=""><strong>Museo del prado</strong><small>600 m.</small></li>
-		<li><img src="img/Eventos.png" alt=""><strong>Plaza mayor</strong><small>650 m.</small></li>
-		<li style="background-color:#33CCCC;"><img src="img/Eventos.png" alt=""><strong>Caixaforum</strong><small>700 m.</small></li>
-		<li><img src="img/Eventos.png" alt=""><strong>Feria medieval de
-	Madrid</strong><small>2300 m.</small></li>
-		</ul>
-	   </div>
-	</div>
-        </section>
-        <section id="newSound" class="indented">
-            <div id="smallMap"></div>
-	    <div class="miForm" style="margin-top:15px;">
-                    <label for="input">Name</label>
-                    <input type="text" id="name" placeholder="Audio name">
-                    <label for="border">Description</label>
-                    <textarea style="resize:none;" id="description" placeholder="Audio description (optional)"></textarea>
-		    <input type="hidden" id="globalLon"></input>
-		    <input type="hidden" id="globalLat"></input>
- 	    <audio id="player" style="margin-top:15px;" controls autoplay></audio>
- 	    <input type="hidden" id="audioData"></input>
-	    <button id="record" class="wide">Record</button>
-	    <button id="upload" class="wide accept">Upload</button>
-	    </div>
-        </section>
-        <section id="notifications" class="indented">
-            <button class="wide accept" id="show_success">Success</button>
-            <button class="wide cancel" id="show_error">Error</button>
-            <button class="wide" id="show_confirm">Confirm</button>
-            <button class="wide" id="show_custom">Custom</button>
-            <button class="wide grey" id="show_loading">Loading</button>
-            <button class="wide" id="show_progress">Progress</button>
-        </section>
-        <section id="colors">
-            <p class="align-center blue" style="padding: 10px">blue</p>
-            <p class="align-center red" style="padding: 10px">red</p>
-            <p class="align-center yellow" style="padding: 10px">yellow</p>
-            <p class="align-center black" style="padding: 10px">black</p>
-            <p class="align-center white" style="padding: 10px">white</p>
-            <p class="align-center grey" style="padding: 10px">grey</p>
-            <p class="align-center green" style="padding: 10px">green</p>
-            <p class="align-center pink" style="padding: 10px">pink</p>
-            <p class="align-center purple" style="padding: 10px">purple</p>
-            <p class="align-center brown" style="padding: 10px">brown</p>
-            <p class="align-center orange" style="padding: 10px">orange</p>
+                    <input type="password" name="password" id="input3">
+				</fieldset>
+			TODO: Cambiar estos inlines
+			<div style="text-align:center;">
+				<a href="local.html"><button id="login" class="icon login" style="line-height:39px;font-size:24px;width:290px;height:39px;margin-top:5px;">Entrar</button><br /></a>-->
+			<div style="text-align:center;margin-top:15px;">
+				<fb:login-button data-size="xlarge" scope="public_profile,email" onlogin="checkLoginState();">Login with Facebook</fb:login-button>
+			</div>
         </section>
     </article>
 
     <script src="js/tako.components.js"></script>
     <script src="js/tako.debug.js"></script>
-    <script src="js/load_map.js"></script>
-    <script src="js/record_audio.js"></script>
     <script>
-	var audioSpots = "";
         Tako.onReady(function(){
             console.log("LOADED");
-		//Get all the sounds
-		//var fiblindGetAllAPI = "http://nosferatu.sytes.net:3000/audioSpots";
-		var fiblindGetAllAPI = "http://192.168.1.128:3000/audioSpots";
-		$.ajax({
-  			type: 'GET',
-  			url: fiblindGetAllAPI,
-  			dataType: 'text',
-  			success: function(data){
-				audioSpots = JSON.parse(data);
-  			},
-  			error: function(xhr, type){
-				//Error
-  			}
-		})
 	    });
-	    $("#soundsMap").on("load", function(){
-	        LoadMap("map",true);
-		    getAllSpots(audioSpots);
-	    });
-	    $("#newSound").on("load", function(){
-	        LoadMap("smallMap",true);
-		var audioElement = document.getElementById('player');
-		var recording = false;
-		$('#upload').hide();
-		$('#record').on('click',function(){
-			if (!recording){
-				recording = true;
-				var recordingStarted = new Date();
-				$(this).html('Stop');
-				navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-				var constraints = {audio: true};
-				navigator.getUserMedia(constraints, startRecording, errorCallback);
-			} else {
-			    mediaRecorder.stop();
-			    mediaRecorder.ondataavailable = function(e) {
-				audioElement.src = window.URL.createObjectURL(e.data);
-				encodeAudio(e.data);
-				$('#upload').show();
-			    };
-			    recording = false;
-			    $(this).html('Record');
-			}
-		});
-		$('#upload').on('click',function(){
-			var fiblindAPI= "http://nosferatu.sytes.net:3000/audioSpot";
-			var fiblindAPI= "http://192.168.1.128:3000/audioSpot";
-			$.ajax({
-				url: fiblindAPI,
-				type: "POST",
-				data: {
-					name:$('#name').val(),
-					longitude:$('#globalLon').val(),
-					latitude:$('#globalLat').val(),
-					description:$('#description').val(),
-					audiodata:$('#audioData').val()
-                                },
-				dataType: 'text',
-				success: function(data){
-					Tako.Notification.success("ok","Sound note created","Your sound has been loaded to the database", null,
-						function(){
-							$('#name').val('');
-							$('#globalLon').val('');
-							$('#globalLat').val('');
-							$('#description').val('');
-							$('#audiodata').val('');
-						});
-				},
-				error: function(xhr, type){
-					Tako.Notification.error(null,"Error","Something went wrong, check your connection", 3, function(){console.log("ERROR CB");});
-					console.log('Ajax error!');
-					console.log('XHR:'+xhr);
-					console.log('Type:'+type);
-				}
-			})
-	        });
-	    });
-	    $("#database").on("load", function(){
-            window.puller = Tako.Pull_Refresh("main", {onRefresh:function(){
-                setTimeout(function(){
-                    alert("Refresh finished");
-                    puller.hide()}, 3000);
-            }});
-            // Tako.Section("notifications");
-            // Tako.Section("buttons");
-            // Tako.Section("colors");
-        });
-
-        Tako.init({"articles": ["article2.html"]});
-        $("#show_success").bind("tap", function(){
-            Tako.Notification.success("ok", "Success!!","Everything worked fine", null, function(){console.log("SUCCESS CB");})
-        });
-        $("#show_error").bind("tap", function(){
-            Tako.Notification.error("deny", "Error!!","Something went wrong", null, function(){console.log("ERROR CB");})
-        });
-        $("#show_confirm").bind("tap", function(){
-            Tako.Notification.confirm("help-circled", "Question", "Do you like TaKos", "Of course", "Not much", function(result){
-                if(result){
-                    alert("I know you like them!!");
-                    console.log("I know you like them!!");
-                }else{
-                    alert("Well, I hope at least you like our TaKo");
-                    console.log("Well, I hope at least you like our TaKo");
-                }
-            })
-        });
-        $("#show_custom").bind("tap", function(){
-            Tako.Notification.custom("Custom", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tempus auctor convallis. Aliquam eget ipsum a velit pulvinar elementum vitae non dolor. Nullam dui metus, tincidunt non dolor eu, laoreet auctor tellus. Suspendisse vestibulum scelerisque nibh non scelerisque. Cras eget lobortis orci. Vestibulum ultrices enim mattis fermentum tristique. Nunc ultricies feugiat tellus, ut facilisis est dignissim nec. Vivamus molestie sem vel euismod vestibulum.", true, "", null, function(){console.log("Fin de custom")});
-        });
-        $("#show_loading").bind("tap", function(){
-            Tako.Notification.loading("Loading", 5, function(){console.log("LOADING CB");})
-        });
-        $("#show_progress").bind("tap", function(){
-            var progress = Tako.Notification.progress("spin1 animated", "Downloading", "Please wait until your download is completed");
-            setTimeout(function(){progress.percent(20)},1000);
-            setTimeout(function(){progress.percent(60)},2500);
-            setTimeout(function(){progress.percent(100)},4500);
-        });
+        Tako.init();
     </script>
     <!--<script src="http://192.168.2.100:8080/target/target-script-min.js"></script> -->
-    <script src="js/openlayers/OpenLayers.mobile.js"></script>
-    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
-    <script src="js/fiblind.js"></script>
 </body>
 </html>
