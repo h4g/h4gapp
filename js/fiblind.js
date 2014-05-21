@@ -35,7 +35,7 @@ function processImage(file, containerid) {
 		container.appendChild(canvas);
 	}
 }
-function getUserInfo(whatId){
+function getUserInfo(whatId,whatSection){
 	var currentUid =  window.localStorage.getItem("uid");
 	var fiblindGetUserInfoAPI= "http://192.168.1.128:3000/user";
 	//var fiblindGetClosestAPI = "http://nosferatu.sytes.net:3000/closestSpots";
@@ -54,18 +54,18 @@ function getUserInfo(whatId){
 			fullName += userInfo.firstName+" ";
 			fullName += " "+userInfo.lastName;
 
-			$('#fullName').text(fullName);
-			$('#livingIn').text(userInfo.living);
-			$('#bio').text(userInfo.bio);
+			whatSection.find('.fullName').text(fullName);
+			whatSection.find('.livingIn').text(userInfo.living);
+			whatSection.find('.bio').text(userInfo.bio);
 			if (userInfo.picture == ""){
-				$('#picture').attr('src','./img/no-profile.png');
+				whatSection.find('.picture').attr('src','./img/no-profile.png');
 			} else {
-				$('#picture').attr('src','whatever');
+				whatSection.find('.picture').attr('src','whatever');
 			}
 			if (userInfo.cover == ""){
-				$('#cover').css('background','url(./img/no-cover.png) no-repeat scroll 50% 50% / cover transparent;');
+				whatSection.find('.cover').css('background','url(./img/no-cover.png) no-repeat scroll 50% 50% / cover transparent;');
 			} else {
-				$('#cover').css('background','url(Whatever) no-repeat scroll 50% 50% / cover transparent;');
+				whatSection.find('.cover').css('background','url(Whatever) no-repeat scroll 50% 50% / cover transparent;');
 			}
 		},
 		error: function(xhr, type){

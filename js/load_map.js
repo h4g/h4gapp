@@ -9,7 +9,7 @@ function getFeatures(points) {
 					    );
         	var template = { "type": "Feature", "geometry": {"type": "Point", "coordinates":
 [lonLat.lon,lonLat.lat]},"properties":
-{"name":points[i].name,"description":points[i].description,"audiodata":points[i].audiodata}};
+{"name":points[i].name,"description":points[i].description,"audiodata":points[i].audiodata,"uploader":points[i].uploader}};
 		arrayFeatures.push(template);
 	}
         var features = {
@@ -36,6 +36,7 @@ function getAllSpots(points){
 		    $('#whatName').html(feature.attributes.name);
 		    $('#whatDescription').html(feature.attributes.description);
 		    var audioElement = document.getElementById('mapPlayer');
+		    $('#whatUploader').html(feature.attributes.uploader);
 		    audioElement.src = feature.attributes.audiodata;
 	    	    map.setCenter(centerPoint, 18);
                 },

@@ -26,6 +26,7 @@
         </header>
         <ul>
             <li  data-section="profile"><img src="img/perfil.png" style="width:30px;height:auto;">My profile</li>
+            <li  data-section="people"><img src="img/perfil.png" style="width:30px;height:auto;">People</li>
             <li  data-section="soundsMap"><img src="img/sound_map.png" style="width:30px;height:auto;">Sounds map</li>
             <li  data-section="nearSounds"><img src="img/near_sound.png" style="width:30px;height:auto;">Near sounds</li>
             <li  data-section="newSound"><img src="img/create_sound.png" style="width:30px;height:auto;">Create sound</li>
@@ -134,11 +135,25 @@
         </section>
         <section id="profile" class="indented">
 			<!-- TODO: Cambiar estos inline -->
-			<div id="cover" style="width:100%;height:300px;"></div>
-			<img id="picture" style="border-radius:50%;margin-left:15px;margin-top:-100px;"></img>
-			<h1 id="fullName" style="font-size:30px;"></h1>
-			<h2 id="livingIn" style="font-size:20px;"></h2>
-			<p id="bio"></p>
+			<div class="cover" style="width:100%;height:300px;"></div>
+			<img class="picture" style="border-radius:50%;margin-left:15px;margin-top:-100px;"></img>
+			<h1 class="fullName" style="font-size:30px;"></h1>
+			<h2 class="livingIn" style="font-size:20px;"></h2>
+			<p class="bio"></p>
+	    </div>
+		</section>
+        <section id="people" class="indented">
+			<div id="myFriends">
+				<p>You dont have any friends yet.</p>
+			</div>
+			<div id="singleProfile" style="display:none;">
+				<!-- TODO: Cambiar estos inline agrupar por clases seguramente-->
+				<div class="cover" style="width:100%;height:300px;"></div>
+				<img class="picture" style="border-radius:50%;margin-left:15px;margin-top:-100px;"></img>
+				<h1 class="fullName" style="font-size:30px;"></h1>
+				<h2 class="livingIn" style="font-size:20px;"></h2>
+				<p class="bio"></p>
+			<div>
 	    </div>
 		</section>
         <section id="soundsMap" class="indented">
@@ -164,6 +179,14 @@
 				<tr>
 					<td>
 						<audio id="mapPlayer" style="margin-top:15px;" controls autoplay></audio>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<p><b>Uploaded by:</b></p>
+					</td>
+					<td>
+					<p id="whatUploader" class="profileLink" data-section='people'>Uploader de prueba</p>
 					</td>
 				</tr>
 			</table>
@@ -231,6 +254,11 @@
 	var audioSpots = "";
         Tako.onReady(function(){
             console.log("LOADED");
+			$('.profileLink').on('click',function(){
+				$('#myFriends').hide();
+				getUserInfo($(this).html(),$('#singleProfile'));
+				$('#singleProfile').show();
+			});
 			$('#exit').on('click',function(){
 				window.localStorage.removeItem("uid");
 				window.location.href="index.html";	
@@ -256,7 +284,7 @@
 	    });
 	    $("#profile").on("load", function(){
 			var currentUid =  window.localStorage.getItem("uid");
-			getUserInfo(currentUid);
+			getUserInfo(currentUid,$(this));
 	    });
 	    $("#soundsMap").on("load", function(){
 	        LoadMap("map",true);
@@ -289,15 +317,17 @@
 		$('#upload').on('click',function(){
 			var fiblindAPI= "http://nosferatu.sytes.net:3000/audioSpot";
 			var fiblindAPI= "http://192.168.1.128:3000/audioSpot";
+			var currentUid =  window.localStorage.getItem("uid");
 			$.ajax({
 				url: fiblindAPI,
 				type: "POST",
 				data: {
 					name:$('#name').val(),
 					longitude:$('#globalLon').val(),
+					uid:currentUid,
 					latitude:$('#globalLat').val(),
 					description:$('#description').val(),
-					audiodata:$('#audioData').val()
+					audiodata:$('#audioData').val(),
                                 },
 				dataType: 'text',
 				success: function(data){
