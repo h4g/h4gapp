@@ -16,35 +16,26 @@
     <link rel="stylesheet" href="stylesheets/tako.theme.css">
     <link rel="stylesheet" href="stylesheets/map.css">
 </head>
-
 <body>
-	<div id="fb-root"></div>
-    <script src="js/fiblindFacebook.js"></script>
     <article id="article_1">
         <header>
             <h1>Welcome to Fiblind</h1>
         </header>
-        <footer>
-            <nav>
-				<p>Aquí va la información del footer</p>
-            </nav>
-        </footer>
         <section id="login">
 			<!-- TODO: Cambiar estos inlines -->
 			<div style="text-align:center; margin-top:15px;"><img src="img/logoCabecera.png"></img></div>
-			<!-- TODO: Nuestro propio login
             <div class="miForm">
                 <fieldset>
                     <label for="input">Username</label>
                     <input type="text" id="username" name="username">
                     <label for="input">Password</label>
-                    <input type="password" name="password" id="input3">
+                    <input type="password" name="password" id="password">
 				</fieldset>
-			TODO: Cambiar estos inlines
+			<!-- TODO: Cambiar estos inlines-->
 			<div style="text-align:center;">
-				<a href="local.html"><button id="login" class="icon login" style="line-height:39px;font-size:24px;width:290px;height:39px;margin-top:5px;">Entrar</button><br /></a>-->
-			<div style="text-align:center;margin-top:15px;">
-				<fb:login-button data-size="xlarge" scope="public_profile,email" onlogin="checkLoginState();">Login with Facebook</fb:login-button>
+				<button id="submitLogin" class="icon login" style="">Log In</button><br />
+				<a href="register.html"><button id="register" class="icon new"
+						style="margin-top:15px;">Create new account</button></a><br />
 			</div>
         </section>
     </article>
@@ -54,9 +45,33 @@
     <script>
         Tako.onReady(function(){
             console.log("LOADED");
+			$('#submitLogin').on('click',function(){
+				var fiblindLoginAPI= "http://192.168.1.128:3000/login";
+				//var fiblindLoginAPI= "http://nosferatu.sytes.net:3000/login";
+				$.ajax({
+					url: fiblindLoginAPI,
+					type: "POST",
+					data: {
+						   username:$('#username').val(),
+						   password:$('#password').val()
+						  },
+					dataType: 'text',
+					success: function(data){
+						window.localStorage.setItem("uid",data.replace(/\"/g, "")); 
+						window.location.href = "fiblind.html";
+					},
+					error: function(xhr, type){
+						Tako.Notification.error(null, "Error","Something went wrong, check your connection", 3, function(){console.log("ERROR CB");});
+						console.log('Ajax error!');
+						console.log('XHR:'+xhr);
+						console.log('Type:'+type);
+					}
+				})
+			});
 	    });
         Tako.init();
     </script>
+    <script src="js/fiblind.js"></script>
     <!--<script src="http://192.168.2.100:8080/target/target-script-min.js"></script> -->
 </body>
 </html>

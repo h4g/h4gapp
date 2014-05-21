@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Fiblind</title>
+    <meta name="description" content="Local">
+    <meta name="author" content="">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="HandheldFriendly" content="True">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="stylesheets/tako.css">
+    <link rel="stylesheet" href="stylesheets/tako.theme.css">
+    <link rel="stylesheet" href="stylesheets/map.css">
+</head>
+
+<body>
+    <article id="article_1">
+        <header>
+            <h1>Welcome to Fiblind</h1>
+        </header>
+        <section id="register">
+			<!-- TODO: Cambiar estos inlines -->
+			<h1>Register new user</h1>
+            <div class="miForm">
+                <fieldset>
+                    <label for="input">Username</label>
+                    <input type="text" id="username" name="username">
+                    <label for="input">Password</label>
+                    <input type="password" name="password" id="password">
+                    <label for="input">Password confirm</label>
+                    <input type="password" name="passwordConfirm" id="passwordConfirm">
+                    <label for="input">First Name</label>
+                    <input type="text" id="firstName" name="firstName">
+                    <label for="input">Last Name</label>
+                    <input type="text" id="lastName" name="lastName">
+                    <label for="input">Living in</label>
+                    <input type="text" id="living" name="living">
+                    <label for="border">Bio</label>
+                    <textarea style="resize:none;" id="bio" placeholder="Bio (optional)"></textarea>
+                    <label for="border">Profile picture</label>
+	    			<button id="picture" class="wide">Choose images</button>
+					<!-- TODO: CAMBIAR ESTE INLINE -->
+					<div id="hiddenPicture" style="position:absolute;left:-9999px;">
+						<input type="file"  id="pictureInput" name="picture" accept="image/*">
+					</div>
+					<div id="previewPicture"></div>
+                    <label for="border">Cover image</label>
+	    			<button id="cover" class="wide">Choose images</button>
+					<!-- TODO: CAMBIAR ESTE INLINE -->
+					<div id="hiddenCover" style="position:absolute;left:-9999px;">
+						<input type="file"  id="coverInput" name="cover" accept="image/*">
+					</div>
+					<div id="previewCover"></div>
+				</fieldset>
+			<!-- TODO: Cambiar estos inlines-->
+			<div style="text-align:center;">
+				<button id="submitRegister" class="icon new" style="margin-top:15px;">Create new account</button><br />
+			</div>
+        </section>
+    </article>
+
+    <script src="js/tako.components.js"></script>
+    <script src="js/tako.debug.js"></script>
+    <script src="js/fiblind.js"></script>
+    <script>
+        Tako.onReady(function(){
+            console.log("LOADED");
+			$("#picture").on('click',function(e) {
+				e.preventDefault();
+				$("#pictureInput").trigger("click");
+			});
+			$("#pictureInput").change(function(){
+				$("#previewPicture").empty();
+				processImage($('#pictureInput')[0].files[0],"previewPicture");
+			});
+			$("#cover").on('click',function(e) {
+				e.preventDefault();
+				$("#coverInput").trigger("click");
+			});
+			$("#coverInput").change(function(){
+				$("#previewCover").empty();
+				processImage($('#coverInput')[0].files[0],"previewCover");
+			});
+			$('#submitRegister').on('click',function(){
+				var fiblindRegisterAPI = "http://192.168.1.128:3000/register";
+				//var fiblindRegisterAPI = "http://nosferatu.sytes.net:3000/register";
+				var pictureB64 = $("#previewPicture canvas")[0].toDataURL("image/png");
+				var coverB64 = $("#previewCover canvas")[0].toDataURL("image/png");
+				$.ajax({
+					url: fiblindRegisterAPI,
+					type: "POST",
+					data: {
+						   username:$('#username').val(),
+						   firstName:$('#firstName').val(),
+						   lastName:$('#lastName').val(),
+						   password:$('#password').val(),
+						   living:$('#living').val(),
+						   picture:"",
+						   cover:"",
+						   bio:$('#bio').val()
+						  },
+					dataType: 'text',
+					success: function(data){
+						window.location.href = "index.html";
+					},
+					error: function(xhr, type){
+						Tako.Notification.error(null, "Error","Something went wrong, check your connection", 3, function(){console.log("ERROR CB");});
+						console.log('Ajax error!');
+						console.log('XHR:'+xhr);
+						console.log('Type:'+type);
+					}
+				})
+			});
+	    });
+        Tako.init();
+    </script>
+    <!--<script src="http://192.168.2.100:8080/target/target-script-min.js"></script> -->
+</body>
+</html>

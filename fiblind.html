@@ -19,8 +19,6 @@
 </head>
 
 <body>
-	<div id="fb-root"></div>
-    <script src="js/fiblindFacebook.js"></script>
     <aside class="full">
     <!-- <aside> -->
         <header>
@@ -31,14 +29,14 @@
             <li  data-section="soundsMap"><img src="img/sound_map.png" style="width:30px;height:auto;">Sounds map</li>
             <li  data-section="nearSounds"><img src="img/near_sound.png" style="width:30px;height:auto;">Near sounds</li>
             <li  data-section="newSound"><img src="img/create_sound.png" style="width:30px;height:auto;">Create sound</li>
+            <li class="icon exit" id="exit">Exit</li>
         </ul>
     </aside>
 
     <article id="article_1">
         <header>
             <nav class="left">
-                <button class="icon ellipsis-vert" data-action="aside"
-style="background-color:#33CCCC;"></button>
+                <button class="icon ellipsis-vert" data-action="aside" style="background-color:#33CCCC;"></button>
             </nav>
             <nav class="right">
                 <button  class="button" data-action="aside" data-visible="colors"><img src="img/Eventos.png" alt=""><span>Aside</span></button>
@@ -138,35 +136,38 @@ style="background-color:#33CCCC;"></button>
 			<!-- TODO: Cambiar estos inline -->
 			<div id="cover" style="width:100%;height:300px;"></div>
 			<img id="picture" style="border-radius:50%;margin-left:15px;margin-top:-100px;"></img>
-			<h1 id="username" style="font-size:30px;"></h1>
-        </section>
+			<h1 id="fullName" style="font-size:30px;"></h1>
+			<h2 id="livingIn" style="font-size:20px;"></h2>
+			<p id="bio"></p>
+	    </div>
+		</section>
         <section id="soundsMap" class="indented">
             <div id="map"></div>
-	    <div id="popupBasic">
-	    <table>
-		    <tr>
-			    <td>
-			    <p><b>Name:</b></p>
-			    </td>
-			    <td>
-			    <p id="whatName">Nombre de prueba</p>
-			    </td>
-		    </tr>
-		    <tr>
-			    <td>
-			    <p><b>Description:</b></p>
-			    </td>
-			    <td>
-			    <p id="whatDescription">Descripción de prueba</p>
-			    </td>
-		    </tr>
-			<tr>
-				<td>
- 	    			<audio id="mapPlayer" style="margin-top:15px;" controls autoplay></audio>
-				</td>
-			</tr>
-	    </table>
-	    </div>
+			<div id="popupBasic">
+			<table>
+				<tr>
+					<td>
+					<p><b>Name:</b></p>
+					</td>
+					<td>
+					<p id="whatName">Nombre de prueba</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<p><b>Description:</b></p>
+					</td>
+					<td>
+					<p id="whatDescription">Descripción de prueba</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<audio id="mapPlayer" style="margin-top:15px;" controls autoplay></audio>
+					</td>
+				</tr>
+			</table>
+			</div>
         </section>
         <section id="nearSounds" class="big indented">
 	<div class="miForm">
@@ -230,23 +231,32 @@ style="background-color:#33CCCC;"></button>
 	var audioSpots = "";
         Tako.onReady(function(){
             console.log("LOADED");
-		//Get all the sounds
-		//var fiblindGetAllAPI = "http://nosferatu.sytes.net:3000/audioSpots";
-		var fiblindGetAllAPI = "http://192.168.1.128:3000/audioSpots";
-		$.ajax({
-  			type: 'GET',
-  			url: fiblindGetAllAPI,
-  			dataType: 'text',
-  			success: function(data){
-				audioSpots = JSON.parse(data);
-  			},
-  			error: function(xhr, type){
-				//Error
-  			}
-		})
+			$('#exit').on('click',function(){
+				window.localStorage.removeItem("uid");
+				window.location.href="index.html";	
+			});
+			//Get all the sounds
+			//var fiblindGetAllAPI = "http://nosferatu.sytes.net:3000/audioSpots";
+			var currentUid =  window.localStorage.getItem("uid");
+			var fiblindGetAllAPI = "http://192.168.1.128:3000/audioSpots";
+			$.ajax({
+				type: 'GET',
+				data: {
+					   uid:currentUid
+				},
+				url: fiblindGetAllAPI,
+				dataType: 'text',
+				success: function(data){
+					audioSpots = JSON.parse(data);
+				},
+				error: function(xhr, type){
+					//Error
+				}
+			})
 	    });
 	    $("#profile").on("load", function(){
-			cargaInfoUsuario();
+			var currentUid =  window.localStorage.getItem("uid");
+			getUserInfo(currentUid);
 	    });
 	    $("#soundsMap").on("load", function(){
 	        LoadMap("map",true);
